@@ -385,15 +385,15 @@ for (var i = 1; i < 100; i++){
 console.log('合計:' + result);  //奇数でだけの合計値
 
 
-関数
-function 関数名(引数){
-	処理
-	return 戻り値;
-}                        
+// 関数
+// function 関数名(引数){
+// 	処理
+// 	return 戻り値;
+// }                        
 
-引数・・・与えられた入力(パラメーター) //仮引数ともいう
-return・・・出力(結果)
-呼び出し側の引数を実引数という
+// 引数・・・与えられた入力(パラメーター) //仮引数ともいう
+// return・・・出力(結果)
+// 呼び出し側の引数を実引数という
 
 
 function getTriangle(base , height) {
@@ -406,15 +406,15 @@ console.log(getTriangle(5,2));
 
 //コンストラクター = オブジェクト名
 
-var 変数名　= new Function(引数...,関数の本体);
+// var 変数名　= new Function(引数...,関数の本体);
 
-var getTriangle = new Function('base','height', 'return base * height / 2;');
-console.log(getTriangle(5 , 2));
+// var getTriangle = new Function('base','height', 'return base * height / 2;');
+// console.log(getTriangle(5 , 2));
 
 //Functionコンストラクターでは、引数や関数本体を文字列として定義できる
 
 var param = 'height , width';
-var formul = 'return height * widht / 2;';
+var formul = 'return height * width / 2;';
 var diamond = new Function(param, formul);
 console.log (diamond(5, 2));
 
@@ -424,19 +424,19 @@ console.log (diamond(5, 2));
 西暦が100で割り切れる年は平年
 400で割り切れる年は閏年 */
 
-閏年(year)
-
-year ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
+// year ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
 
 function 閏年(year){
 	return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
 }
+var year = 2018;
+閏年(year)
 
 console.log(閏年(2018));
 
 
 
-オブジェクト（モノを表現するために複数の情報を持つ）　= 変数と関数の集合体　　変数=プロパティ　　関数=メソッド
+// オブジェクト（モノを表現するために複数の情報を持つ）　= 変数と関数の集合体　　変数=プロパティ　　関数=メソッド
 
 var CPI = '文字列です';
 
@@ -458,3 +458,49 @@ TestObj = {
 }
 TestObj.test();  //メソッドを実行
 console.log(TestObj.CPI);
+
+
+function 手順1(year) {
+	// 1 判定する年が 4 で割り切れる場合は手順 2. に進みます。
+	if (year % 4 === 0) {
+		手順2(year);
+	} else {
+		//割り切れない場合は手順 5. に進みます。
+		手順5(year);
+	}
+}
+
+// 2 その年が 100 で割り切れる場合は手順 3. に進みます。
+// 割り切れない場合は手順 4. に進みます。
+function 手順2(year) {
+	if (year % 100 === 0) {
+		手順3(year);
+	} else {
+		手順4(year);
+	}
+}
+
+// 3 その年が 400 で割り切れる場合は手順 4. に進みます。
+// 割り切れない場合は手順 5. に進みます。
+function 手順3(year) {
+	if (year % 400 === 0) {
+		手順4(year);
+	} else {
+		手順5(year);
+	}
+}
+
+// 4 その年はうるう年です (この年は 366 日です)。
+function 手順4(year) {
+	console.log('うるう年です')
+}
+
+// 5 その年はうるう年ではありません (この年は 365 日です)。
+function 手順5(year) {
+	console.log('うるう年ではない')
+}
+
+function うるう年判定(year) {
+	手順1(year);
+}
+
